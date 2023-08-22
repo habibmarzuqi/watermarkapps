@@ -16,3 +16,8 @@ WORKDIR /app
 
 # Jalankan server Django saat kontainer dimulai
 CMD ["gunicorn", "watermarkapp.wsgi:application", "--bind", "0.0.0.0:8000"]
+
+RUN apt-get update && apt-get install -y \
+    default-libmysqlclient-dev \
+    gcc \
+    pkg-config
