@@ -1,0 +1,8 @@
+#kecualikan file idea
+#git rm -r --cached .idea
+#git commit -m "Remove .idea from git repository"
+#git push origin master
+#git rm -r --cached .idea
+
+.idea
+.xml

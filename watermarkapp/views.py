@@ -100,3 +100,5 @@ def detail(request, pk):
         'item': item,
     }
     return render(request, 'detail.html', context)
+
+#belajarcommit
