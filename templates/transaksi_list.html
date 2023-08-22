@@ -1,0 +1,64 @@
+<!-- transaksi_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Watermark</title>
+</head>
+<body>
+    <h1>Data Watermark</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nomor Inventaris</th>
+                <th>Tanggal Produksi</th>
+                <th>Kondisi Fisik Kertas</th>
+                <th>Panjang Kertas</th>
+                <th>Lebar Kertas</th>
+                <th>Warna Kertas</th>
+                <th>Gramatur Kertas</th>
+                <th>Tingkat Keasaman</th>
+                <th>Motif Watermark</th>
+                <th>Posisi Watermark</th>
+                <th>Panjang Watermark</th>
+                <th>Lebar Watermark</th>
+                <th>Motif Countermark</th>
+                <th>Posisi Countermark</th>
+                <th>Panjang Countermark</th>
+                <th>Lebar Countermark</th>
+                <th>Jarak Antara Kolom Garis</th>
+                <th>Pabrik Kertas</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaksi in transaksi_data %}
+            <tr>
+                <td>{{ transaksi.nomor_inventaris }}</td>
+                <td>{{ transaksi.waktu_produksi_kertas }}</td>
+                <td>{{ transaksi.kondisi_fisik_kertas }}</td>
+                <td>{{ transaksi.panjang_kertas }}</td>
+                <td>{{ transaksi.lebar_kertas }}</td>
+                <td>{{ transaksi.warna_kertas }}</td>
+                <td>{{ transaksi.gramatur_kertas }}</td>
+                <td>{{ transaksi.tingkat_keasaman }}</td>
+                <td>{{ transaksi.motif_watermark }}</td>
+                <td>{{ transaksi.posisi_watermark }}</td>
+                <td>{{ transaksi.panjang_watermark }}</td>
+                <td>{{ transaksi.lebar_watermark }}</td>
+                <td>{{ transaksi.motif_countermark }}</td>
+                <td>{{ transaksi.posisi_countermark }}</td>
+                <td>{{ transaksi.panjang_countermark }}</td>
+                <td>{{ transaksi.lebar_countermark }}</td>
+                <td>{{ transaksi.jarak_antara_kolom_garis }}</td>
+                <td>{{ transaksi.pabrik_kertas }}</td>
+                <td><a href="{% url 'edit-transaksi' transaksi.id %}">Edit</a> |
+                    <a href="{% url 'hapus-transaksi' transaksi.id %}">Hapus</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
