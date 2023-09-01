@@ -6,3 +6,6 @@
 
 .idea
 .xml
+.env
+settings.py
+*.iml
