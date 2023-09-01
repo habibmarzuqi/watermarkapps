@@ -24,6 +24,7 @@ tzdata = "2023.3"
 mysqlclient = "^2.2.0"
 gunicorn = "^21.2.0"
 sphinx = "^7.2.5"
+pip-tools = "^7.3.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
