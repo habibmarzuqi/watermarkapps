@@ -1,1 +1,32 @@
-site_name: My Docs
+# Informasi Proyek
+site_name: Nama Situs Anda
+site_description: Deskripsi Situs Anda
+site_author: Nama Anda
+site_url: https://alamat-situs-anda.com
+
+# Tema
+theme:
+  name: 'readthedocs'  # Tema Material Design (Anda perlu menginstal mkdocs-material)
+
+# Navigasi
+nav:
+  - Beranda: index.md
+ # - Tentang: about.md
+ # - FAQ: faq.md
+ # - Kontak: contact.md
+
+# Ekstensi Markdown
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+
+# Plugin (Opsional)
+plugins:
+#  - search
+#  - mkdocs-git-revision-date-localized-plugin
+
+# Pengaturan Lainnya
+strict: true
+
