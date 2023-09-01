@@ -25,6 +25,7 @@ mysqlclient = "^2.2.0"
 gunicorn = "^21.2.0"
 sphinx = "^7.2.5"
 pip-tools = "^7.3.0"
+mkdocs = "^1.5.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
