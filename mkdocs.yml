@@ -11,7 +11,8 @@ theme:
 # Navigasi
 nav:
   - Beranda: index.md
- # - Tentang: about.md
+  - Persiapan: persiapan.md
+  - environment: env.md
  # - FAQ: faq.md
  # - Kontak: contact.md
 
