@@ -1,6 +1,6 @@
 version: '3'
 
-
+# network yang digunakan oleh semua service
 networks:
   my_network:
     driver: bridge
