@@ -36,6 +36,7 @@ Dengan adanya file `.env`, variabel-variabel tersebut dapat diakses dalam kode m
 1. Copy template file .env 
 `cp .env.example .env`
 2. Isi semua variable yang dibutuhkan seperti nama database, password dan lainnya
+`nano .env`
 
 
 
