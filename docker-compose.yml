@@ -38,6 +38,7 @@ services:
   db:
     image: mysql:latest
     environment:
+
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_USER: ${DATABASE_USER}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
@@ -49,6 +50,7 @@ services:
         - my_network
     ports:
       - "3306:3306"
+
 
 volumes:
   mysql_data:
