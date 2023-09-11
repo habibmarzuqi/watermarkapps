@@ -6,3 +6,7 @@
 
 .idea
 .xml
+.env
+settings.py
+*.iml
+static_collected/

@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = 'django-insecure-4j#pu41@8q+jc#d7t6%1uq_726%m1nmt#&++lnbb!c@4fyi09*
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -74,24 +72,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'watermarkapp.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_watermark',        # Nama database MySQL yang telah Anda buat
-        'USER': 'root',        # Nama pengguna MySQL
-        'PASSWORD': '',       # Kata sandi pengguna MySQL
-        'HOST': 'localhost',                  # Host MySQL, misalnya 'localhost'
-        'PORT': '3306',                       # Port MySQL, misalnya '3306'
+        'NAME': 'watermarkdb',
+        'USER': 'jatnikonm',
+        'PASSWORD': 'watermark',
+        'HOST': 'db',
+        # 'NAME': 'db_watermark', # Nama database MySQL yang telah Anda buat
+        # 'USER': 'root',
+        # 'PASSWORD': 'P@ssw0rd123',
+        # 'HOST': 'localhost',
+
+        'PORT': '3306',  # Port MySQL, misalnya '3306'
         'OPTIONS': {
-                    'sql_mode': 'STRICT_ALL_TABLES',
-                },
+            'sql_mode': 'STRICT_ALL_TABLES',
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -111,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -123,7 +123,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -132,6 +131,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
