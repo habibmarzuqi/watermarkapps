@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencarian Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .search-col {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .results-col {
+            flex: 3;
+            padding: 15px;
+        }
+
+        .filter-col {
+            flex: 1;
+            padding: 15px;
+        }
+        .navbar {
+        margin-bottom: 20px;
+    }
+    body {
+        flex: 1;
+        padding: 15px;
+        background-image: url('media/bg.jpeg'); /* Ganti 'path/to/your/background-image.jpg' dengan URL atau path ke gambar latar belakang Anda */
+        background-size: cover; /* Untuk mengatur gambar agar menutupi seluruh area elemen */
+        background-repeat: no-repeat; /* Untuk menghindari pengulangan gambar */
+    }
+
+    .results-col {
+        flex: 3;
+        padding: 15px;
+    }
+
+    .filter-col {
+        flex: 1;
+        padding: 15px;
+    }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light mdi-rounded-corner justify-content-center">
+        <a class="navbar-brand" href="#">
+          <img
+            src="media/logo_anri.png"
+            height="60"
+            alt="Logo ANRI"
+            loading="lazy"
+            style="margin-top: -20px;"
+          />
+            <span class="font-weight-bold " style="font-size: 40px;" >DITEKSI </span>
+        </a>
+    </nav>
+
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-2 bg-light search-col shadow-lg " style="margin:5px;">
+                <h2>Pencarian</h2>
+                <form action="{% url 'search_results' %}" method="get">
+                    <div class="form-group">
+                        <label for="search_query"></label>
+                        <input type="text" class="form-control" id="search_query" name="search_query" placeholder="Masukkan nama watermark">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </form>
+            </div>
+
+            <div id="dataresults" class="col-md-7 results-col bg-light shadow-lg justify-content-center" style="margin:5px;">
+                {% if search_results %}
+                <h2>Data</h2>
+                <table id="dtHorizontalExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+  width="100%">
+                    <thead>
+                        <tr>
+                            <th>Khazanah</th>
+                            <th>Nomor Inventaris</th>
+                            <th>Lokasi Penggunaan</th>
+                            <th>Tahun Kurun Waktu</th>
+                            <th>Bulan Kurun Waktu</th>
+                            <th>Kurun Waktu Arsip</th>
+                            <th>Jenis Kertas</th>
+                            <th>Motif Watermark</th>
+                            <th>Motif Countermark</th>
+                            <th>Gambar Watermark</th>
+                            <th>Gambar Countermark</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        {% for item in search_results %}
+                        <tr>
+                            <td>{{ item.khazanah }}</td>
+                            <td><a href="#" class="detail-link" data-id="{{ item.id }}">{{ item.nomor_inventaris }}</a></td>
+                            <td>{{ item.lokasi_penggunaan }}</td>
+                            <td>{{ item.tahun_kurun_waktu }}</td>
+                            <td>{{ item.bulan_kurun_waktu }}</td>
+                            <td>{{ item.kurun_waktu_arsip }}</td>
+                            <td>{{ item.jenis_kertas }}</td>
+                            <td>{{ item.motif_watermark }}</td>
+                            <td>{{ item.motif_countermark }}</td>
+                            <td><img src="{{ item.gambar_watermark.url }}" alt="Watermark" height="100"></td>
+                            <td><img src="{{ item.gambar_countermark.url }}" alt="Countermark" height="100"></td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="11">Tidak ada hasil pencarian.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p>Tidak ada hasil pencarian.</p>
+                {% endif %}
+            </div>
+
+             <div id="detailContent" style="display: none;">
+                <!-- Your detail page content here -->
+                <div class="col-md-8 results-col bg-light shadow-lg" style="margin:5px;" >
+                    <h1 class="text-center">Detail Item: {{ item.nomor_inventaris }}</h1>
+
+
+                        <div class="col-md-4">
+                            <h2>Gambar Watermark</h2>
+                            <div class="img-container">
+                                <a href="{{ item.gambar_watermark.url }}" data-lightbox="gambar-watermark" data-title="Gambar Watermark">
+                                    <img src="{{ item.gambar_watermark.url }}" alt="Watermark">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Gambar Countermark</h2>
+                            <div class="img-container">
+                                <img src="{{ item.gambar_countermark.url }}" alt="Countermark">
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <h2>Jarak Garis</h2>
+                            <div class="img-container">
+                                <img src="{{ item.jarak_garis.url }}" alt="Jarak Garis">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Lembar Kertas</h2>
+                            <div class="img-container">
+                                <img src="{{ item.lembar_kertas.url }}" alt="Lembar Kertas" >
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <h2>Ukuran Countermark</h2>
+                            <div class="img-container">
+                            <img src="{{ item.ukuran_countermark.url }}" alt="Ukuran Countermark" >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Ukuran Watermark</h2>
+                            <div class="img-container">
+                            <img src="{{ item.ukuran_watermark.url }}" alt="Ukuran Watermark" >
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-2 bg-light filter-col shadow-lg" style="margin:5px;">
+                <form action="{% url 'search_results' %}" method="get">
+                    <h2>Filter </h2>
+                    {% for watermark_option in watermark_options %}
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="{{ watermark_option }}" name="motif_watermark" value    ="{{ watermark_option }}"
+                               {% if watermark_option in selected_motif_watermarks %}checked{% endif %}>
+                        <label class="form-check-label" for="{{ watermark_option }}">{{ watermark_option }}</label>
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary mt-3">Terapkan Filter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const itemID = "{{ item.nomor_inventaris }}";
+            const detailLink = document.querySelectorAll(".detail-link");
+
+            detailLink.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevent the default link behavior
+
+                    // Get the item ID from the data-id attribute
+                    const itemID = link.getAttribute("data-id");
+
+                    // Create a new div to hold the detail content
+                    const detailDiv = document.createElement("div");
+
+                    // Fetch the detail content using AJAX (you may need to adjust this part)
+                    fetch(`/get_detail/`+itemID)
+                        .then(response => response.text())
+                        .then(data => {
+                            detailDiv.innerHTML = data;
+
+                            // Replace the content of "dataresults" with the detail content
+                            document.querySelector("#dataresults").innerHTML = detailDiv.innerHTML;
+
+                            // You may want to update the URL or perform other actions here
+
+                            // Scroll to the top of the page or perform other scroll behavior
+                            window.scrollTo(0, 0);
+                        })
+                        .catch(error => {
+                            console.error("Error fetching detail content:", error);
+                        });
+                });
+            });
+        });
+        $(document).ready(function () {
+          $('#dtHorizontalExample').DataTable({
+            "scrollX": true
+          });
+          $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap"></script>

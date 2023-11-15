@@ -90,7 +90,7 @@ def search_results(request):
         'watermark_options': watermark_options,
         'selected_motif_watermarks': selected_motif_watermarks,
     }
-    return render(request, 'search.html', context)
+    return render(request, 'searchori.html', context)
 
 
 def detail(request, pk):

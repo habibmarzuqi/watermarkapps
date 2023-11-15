@@ -27,16 +27,16 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">WADABA App</a>
+        <a class="navbar-brand" href="#">Diteksi</a>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container mt-4">
         <h1 class="text-center">Detail Item: {{ item.nomor_inventaris }}</h1>
 
         <div class="row mt-4">
-            <div class="col-md-6">
+            <div class="col-md-6 ">
                 <h2>Gambar Watermark</h2>
-                <div class="img-container">
+                <div class="img-container center-block  ">
                     <a href="{{ item.gambar_watermark.url }}" data-lightbox="gambar-watermark" data-title="Gambar Watermark">
                         <img src="{{ item.gambar_watermark.url }}" alt="Watermark">
                     </a>

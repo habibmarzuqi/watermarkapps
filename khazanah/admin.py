@@ -11,9 +11,9 @@ from datetime import datetime
 current_year = datetime.now().year
 YEARS_CHOICES = [(year, year) for year in range(1950, current_year + 1)]
 # Ganti judul admin
-admin.site.site_header = "WADABA App"
-admin.site.site_title = "WWADABA App"
-admin.site.index_title = "Selamat datang di halaman WADABA Administrator"
+admin.site.site_header = "DITEKSI"
+admin.site.site_title = "DITEKSI"
+admin.site.index_title = "Selamat datang di halaman DITEKSI Administrator"
 
 MONTHS_CHOICES = [
     ('1', 'Januari'), ('2', 'Februari'), ('3', 'Maret'),

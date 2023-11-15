@@ -1,110 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pencarian Data</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .navbar {
-            margin-bottom: 20px;
-        }
-        .search-col {
-            flex: 1;
-            padding: 15px;
-        }
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-        .results-col {
-            flex: 3;
-            padding: 15px;
-        }
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
 
-        .filter-col {
-            flex: 1;
-            padding: 15px;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">WADABA App</a>
-    </nav>
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 bg-light search-col">
-                <h1>Pencarian Watermark</h1>
-                <form action="{% url 'search_results' %}" method="get">
-                    <div class="form-group">
-                        <label for="search_query">Kata Kunci:</label>
-                        <input type="text" class="form-control" id="search_query" name="search_query" placeholder="Masukkan kata kunci">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Cari</button>
-                </form>
-            </div>
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
 
-            <div class="col-md-6 results-col">
-                {% if search_results %}
-                <h2>Hasil Pencarian</h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Khazanah</th>
-                            <th>Nomor Inventaris</th>
-                            <th>Lokasi Penggunaan</th>
-                            <th>Tahun Kurun Waktu</th>
-                            <th>Bulan Kurun Waktu</th>
-                            <th>Kurun Waktu Arsip</th>
-                            <th>Jenis Kertas</th>
-                            <th>Motif Watermark</th>
-                            <th>Motif Countermark</th>
-                            <th>Gambar Watermark</th>
-                            <th>Gambar Countermark</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in search_results %}
-                        <tr>
-                            <td>{{ item.khazanah }}</td>
-                            <td><a href="{% url 'detail' item.id %}">{{ item.nomor_inventaris }}</a></td>
-                            <td>{{ item.lokasi_penggunaan }}</td>
-                            <td>{{ item.tahun_kurun_waktu }}</td>
-                            <td>{{ item.bulan_kurun_waktu }}</td>
-                            <td>{{ item.kurun_waktu_arsip }}</td>
-                            <td>{{ item.jenis_kertas }}</td>
-                            <td>{{ item.motif_watermark }}</td>
-                            <td>{{ item.motif_countermark }}</td>
-                            <td><img src="{{ item.gambar_watermark.url }}" alt="Watermark" height="100"></td>
-                            <td><img src="{{ item.gambar_countermark.url }}" alt="Countermark" height="100"></td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="11">Tidak ada hasil pencarian.</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                {% else %}
-                <p>Tidak ada hasil pencarian.</p>
-                {% endif %}
-            </div>
+.searchTerm:focus{
+  color: #00B4CC;
+}
 
-            <div class="col-md-3 bg-light filter-col">
-                <form action="{% url 'search_results' %}" method="get">
-                    <h2>Filter Watermark:</h2>
-                    {% for watermark_option in watermark_options %}
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="{{ watermark_option }}" name="motif_watermark" value    ="{{ watermark_option }}"
-                               {% if watermark_option in selected_motif_watermarks %}checked{% endif %}>
-                        <label class="form-check-label" for="{{ watermark_option }}">{{ watermark_option }}</label>
-                    </div>
-                    {% endfor %}
-                    <button type="submit" class="btn btn-primary mt-3">Terapkan Filter</button>
-                </form>
-            </div>
-        </div>
-    </div>
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+
+<div class="wrap">
+   <div class="search">
+       <form action="{% url 'search_results' %}" method="get">
+           <input type="text" class="searchTerm" placeholder="What are you looking for?">
+          <button type="submit" class="searchButton">
+            <i class="fa fa-search"></i>
+         </button>
+     </form>
+   </div>
+</div>
