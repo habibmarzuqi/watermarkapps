@@ -21,7 +21,7 @@ MONTHS_CHOICES = [
     ('7', 'Juli'), ('8', 'Agustus'), ('9', 'September'),
     ('10', 'Oktober'), ('11', 'November'), ('12', 'Desember')
 ]
-# Register your models here.
+# Register your models here. # tes
 
 class TransaksiAdminForm(forms.ModelForm):
     tahun_kurun_waktu = forms.IntegerField(widget=Select2Widget(choices=YEARS_CHOICES))
