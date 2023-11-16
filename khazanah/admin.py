@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 current_year = datetime.now().year
-YEARS_CHOICES = [(year, year) for year in range(1950, current_year + 1)]
+YEARS_CHOICES = [(year, year) for year in range(1602, current_year + 1)]
 # Ganti judul admin
 admin.site.site_header = "DITEKSI"
 admin.site.site_title = "DITEKSI"

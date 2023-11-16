@@ -26,12 +26,109 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Diteksi</a>
-    </nav>
 
     <div class="container mt-4">
-        <h1 class="text-center">Detail Item: {{ item.nomor_inventaris }}</h1>
+        <h2 class="text-leftr">Detail Khazanah {{ item.khazanah }} Nomor {{ item.nomor_inventaris }}</h2>
+        <table id="dtHorizontalExample" class="table table-striped table-bordered table-sm" cellspacing="0"   width="100%">
+        <tbody>
+            <tr>
+                <td>Khazanah</td>
+                <td>{{ item.khazanah }}</td>
+            </tr>
+            <tr>
+                <td>Nomor Inventaris</td>
+                <td>{{ item.nomor_inventaris }}</td>
+            </tr>
+            <tr>
+                <td>Lokasi Penggunaan</td>
+                <td>{{ item.lokasi_penggunaan }}</td>
+            </tr>
+            <tr>
+                <td>Kurun Waktu</td>
+                <td><span id="bulanKurunWaktu">{{ item.bulan_kurun_waktu }}</span> {{ item.tahun_kurun_waktu }}</td>
+            </tr>
+            <tr>
+                <td>Kurun Waktu Arsip</td>
+                <td>{{ item.kurun_waktu_arsip }}</td>
+            </tr>
+            <tr>
+                <td>Jenis Kertas</td>
+                <td>{{ item.jenis_kertas }}</td>
+            </tr>
+            <tr>
+                <td>Waktu Produksi Kertas</td>
+                <td>{{ item.waktu_produksi_kertas }}</td>
+            </tr>
+            <tr>
+                <td>Kondisi Fisik Kertas</td>
+                <td>{{ item.kondisi_fisik_kertas }}</td>
+            </tr>
+            <tr>
+                <td>Panjang Kertas (mm)</td>
+                <td>{{ item.panjang_kertas }}</td>
+            </tr>
+            <tr>
+                <td>Lebar Kertas (mm)</td>
+                <td>{{ item.lebar_kertas }}</td>
+            </tr>
+            <tr>
+                <td>Tebal Kertas (mm)</td>
+                <td>{{ item.ketebalan_kertas }}</td>
+            </tr>
+            <tr>
+                <td>Warna Kertas</td>
+                <td>{{ item.warna_kertas }}</td>
+            </tr>
+            <tr>
+                <td>Gramatur Kertas (gr)</td>
+                <td>{{ item.gramatur_kertas }}</td>
+            </tr>
+            <tr>
+                <td>Tingkat Keasaman</td>
+                <td>{{ item.tingkat_keasaman }}</td>
+            </tr>
+            <tr>
+                <td>Jarak Antara Kolom Garis</td>
+                <td>{{ item.jarak_antara_kolom_garis }}</td>
+            </tr>
+            <tr>
+                <td>Motif Watermark</td>
+                <td>{{ item.motif_watermark }}</td>
+            </tr>
+            <tr>
+                <td>Posisi Watermark</td>
+                <td>{{ item.posisi_watermark }}</td>
+            </tr>
+            <tr>
+                <td>Panjang Watermark (mm)</td>
+                <td>{{ item.panjang_watermark }}</td>
+            </tr>
+            <tr>
+                <td>Lebar Watermark (mm)</td>
+                <td>{{ item.lebar_watermark }}</td>
+            </tr>
+            <tr>
+                <td>Motif Countermark</td>
+                <td>{{ item.motif_countermark }}</td>
+            </tr>
+            <tr>
+                <td>Posisi Countermark</td>
+                <td>{{ item.posisi_countermark }}</td>
+            </tr>
+            <tr>
+                <td>Panjang Countermark (mm)</td>
+                <td>{{ item.panjang_countermark }}</td>
+            </tr>
+            <tr>
+                <td>Lebar Countermark (mm)</td>
+                <td>{{ item.lebar_countermark }}</td>
+            </tr>
+            <tr>
+                <td>Pabrik Kertas</td>
+                <td>{{ item.pabrik_kertas }}</td>
+            </tr>
+        </tbody>
+    </table>
 
         <div class="row mt-4">
             <div class="col-md-6 ">
@@ -91,7 +188,26 @@
             'resizeDuration': 200,
             'wrapAround': true
         });
-    </script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const bulanKurunWaktuElement = document.getElementById("bulanKurunWaktu");
+            const numericMonth = parseInt(bulanKurunWaktuElement.textContent);
+
+            // Array to map numeric months to their names
+            const monthNames = [
+                "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+            ];
+
+            // Check if numericMonth is within a valid range
+            if (numericMonth >= 1 && numericMonth <= 12) {
+                const monthName = monthNames[numericMonth - 1]; // Adjust for 0-based array index
+                bulanKurunWaktuElement.textContent = monthName;
+            } else {
+                bulanKurunWaktuElement.textContent = "Bulan Tidak Valid";
+            }
+        });
+</script>
 
 </body>
 </html>
