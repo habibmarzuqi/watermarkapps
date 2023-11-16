@@ -101,3 +101,4 @@ class Transaksi(models.Model):
 
     class Meta:
         verbose_name_plural = 'Data Watermark'
+
